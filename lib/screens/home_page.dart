@@ -26,9 +26,25 @@ class _HomePageState extends State<HomePage> {
           style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
-      body: const Center(
-        child: Text('Let\'s log some time!'),
-      ),
+      body: Center(
+          child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: const [
+            Expanded(
+              child: Center(
+                child: Text("charts here"),
+              ),
+            ),
+            Divider(),
+            Expanded(
+              child: Center(
+                child: Text("entries here"),
+              ),
+            )
+          ],
+        ),
+      )),
     );
   }
 }
