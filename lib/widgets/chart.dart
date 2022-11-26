@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:timelogger_app/widgets/chart_bar.dart';
 
-import '../models/timeslot.dart';
+import '../models/daily_entry.dart';
 import './chart_bar.dart';
 
 /// UI for showing 2week chart of hours worked
 class Chart extends StatelessWidget {
-  final List<TimeSlot> recentTimeSlots;
+  final List<DailyEntry> recentTimeSlots;
 
   const Chart(this.recentTimeSlots);
 
@@ -24,18 +24,13 @@ class Chart extends StatelessWidget {
         var totalSum = 0.0;
 
         for (var tx in recentTimeSlots) {
-          if (tx.date.day == weekDay.day &&
-              tx.date.month == weekDay.month &&
-              tx.date.year == weekDay.year) {
+          if (tx.date.day == weekDay.day && tx.date.month == weekDay.month && tx.date.year == weekDay.year) {
             //  totalSum += tx.amount;
             totalSum += 10;
           }
         }
 
-        return {
-          'day': DateFormat.E().format(weekDay).substring(0, 1),
-          'amount': totalSum
-        };
+        return {'day': DateFormat.E().format(weekDay).substring(0, 1), 'amount': totalSum};
       },
     ).reversed.toList();
   }
@@ -58,12 +53,7 @@ class Chart extends StatelessWidget {
             children: groupedTransactionValues.map((data) {
               return Flexible(
                 fit: FlexFit.tight,
-                child: ChartBar(
-                    data['day'] as String,
-                    data['amount'] as double,
-                    totalSpending == 0.0
-                        ? 0.0
-                        : (data['amount'] as double) / totalSpending),
+                child: ChartBar(data['day'] as String, data['amount'] as double, totalSpending == 0.0 ? 0.0 : (data['amount'] as double) / totalSpending),
               );
             }).toList()),
       ),
