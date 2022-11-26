@@ -17,12 +17,18 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'TimeLogger',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.cyan).copyWith(secondary: Colors.white),
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.cyan)
+            .copyWith(secondary: Colors.white),
         textTheme: ThemeData.light().textTheme.copyWith(
               titleLarge: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
+              ),
+              titleMedium: const TextStyle(
+                color: Colors.cyan,
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
               ),
             ),
       ),

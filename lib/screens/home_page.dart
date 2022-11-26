@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:timelogger_app/widgets/entries_controller.dart';
+import 'package:timelogger_app/widgets/entry_item.dart';
 
 class HomePage extends StatefulWidget {
   static String routename = '/home-page';
@@ -30,7 +32,7 @@ class _HomePageState extends State<HomePage> {
           child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
-          children: const [
+          children: [
             Expanded(
               child: Center(
                 child: Text("charts here"),
@@ -39,8 +41,19 @@ class _HomePageState extends State<HomePage> {
             Divider(),
             Expanded(
               child: Center(
-                child: Text("entries here"),
-              ),
+                  child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'My Entries...',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ),
+                  EntryItem(),
+                  EntryItem(),
+                ],
+              )),
             )
           ],
         ),
