@@ -6,8 +6,9 @@ class EntryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 3.0),
+      padding: const EdgeInsets.symmetric(vertical: 2.0),
       child: Container(
+        height: 30.0,
         decoration: BoxDecoration(
           // color: Theme.of(context).colorScheme.primary,
           border: Border.all(
@@ -22,10 +23,7 @@ class EntryItem extends StatelessWidget {
               color: Theme.of(context).colorScheme.primary,
             ),
             const Expanded(child: Text("25 Nov")),
-            
-            Row(children: const [
-              Text("08:45"),
-            ],)
+            const DurationItem()
           ],
         ),
       ),
@@ -33,13 +31,53 @@ class EntryItem extends StatelessWidget {
   }
 }
 
-class DurationItem extends StatelessWidget {
+class DurationItem extends StatefulWidget {
   const DurationItem({Key? key}) : super(key: key);
 
   @override
+  State<DurationItem> createState() => _DurationItemState();
+}
+
+class _DurationItemState extends State<DurationItem> {
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 20,
-    )
+    // ignore: sized_box_for_whitespace
+    return Row(
+      children: [
+        IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.remove_circle_outline,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+          padding: EdgeInsets.zero,
+        ),
+        Container(
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.black87,
+            ),
+            borderRadius: BorderRadius.circular(2),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Row(
+              children: const [
+                Text("08:"),
+                Text("45"),
+              ],
+            ),
+          ),
+        ),
+        IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.add_circle_outline,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+          padding: EdgeInsets.zero,
+        )
+      ],
+    );
   }
 }

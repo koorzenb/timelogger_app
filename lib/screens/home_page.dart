@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:get/get.dart';
-import 'package:timelogger_app/widgets/entries_controller.dart';
+import 'package:timelogger_app/widgets/chart.dart';
 import 'package:timelogger_app/widgets/entry_item.dart';
 
 class HomePage extends StatefulWidget {
@@ -35,10 +33,10 @@ class _HomePageState extends State<HomePage> {
           children: [
             Expanded(
               child: Center(
-                child: Text("charts here"),
+                child: Chart(),
               ),
             ),
-            Divider(),
+            const Divider(),
             Expanded(
               child: Center(
                   child: Column(
@@ -50,8 +48,13 @@ class _HomePageState extends State<HomePage> {
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),
-                  EntryItem(),
-                  EntryItem(),
+                  const EntryItem(),
+                  const EntryItem(),
+                  const EntryItem(),
+                  const EntryItem(),
+                  const EntryItem(),
+                  const EntryItem(),
+                  const EntryItem(),
                 ],
               )),
             )

@@ -22,5 +22,7 @@
 	"editor.codeActionsOnSave": {
 		"source.fixAll": true,
 		"source.organizeImports": true,
-	}
+	},
+	"dart.hotReloadOnSave": "all",
+	"dart.flutterHotReloadOnSave": "all"
 }

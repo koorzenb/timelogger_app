@@ -1,7 +1,7 @@
 class DailyEntry {
   final DateTime date;
-  final Duration time;
-  int lunchTime = 0;
+  final Duration duration;
+  Duration lunchTime = const Duration(hours: 1);
 
-  DailyEntry(this.date, this.time, int? lunchTime);
+  DailyEntry({required this.date, required this.duration, Duration? lunchTime});
 }
