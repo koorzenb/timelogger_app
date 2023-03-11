@@ -1,15 +1,12 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:timelogger_app/widgets/chart_bar.dart';
 
 import '../models/daily_entry.dart';
-import './chart_bar.dart';
 
 /// UI for showing 2week chart of hours worked
 class Chart extends StatelessWidget {
-  final List<DailyEntry> recentTimeSlots;
+  final List<DateEntry> recentTimeSlots;
 
   const Chart(this.recentTimeSlots);
 
@@ -45,7 +42,7 @@ class Chart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 6,
-      margin: EdgeInsets.all(20),
+      margin: const EdgeInsets.all(20),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Row(

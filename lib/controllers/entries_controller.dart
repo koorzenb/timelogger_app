@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:timelogger_app/models/daily_entry.dart';
 
 class EntriesController extends GetxController {
-  List<DailyEntry> dailyEntries = [];
+  List<DateEntry> dateEntries = [];
 
   static EntriesController get getOrPut {
     try {
@@ -18,4 +18,6 @@ class EntriesController extends GetxController {
   static EntriesController create() {
     return EntriesController._();
   }
+
+  addDateEntry(dateEntries) {}
 }

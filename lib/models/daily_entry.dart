@@ -1,7 +1,7 @@
-class DailyEntry {
+class DateEntry {
   final DateTime date;
-  final Duration time;
+  final Duration duration;
   int lunchTime = 0;
 
-  DailyEntry(this.date, this.time, int? lunchTime);
+  DateEntry({required this.date, required this.duration, int? lunchTime});
 }

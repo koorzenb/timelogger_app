@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class EntryItem extends StatelessWidget {
-  const EntryItem({Key? key}) : super(key: key);
+class DateEntryItem extends StatelessWidget {
+  const DateEntryItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +22,11 @@ class EntryItem extends StatelessWidget {
               color: Theme.of(context).colorScheme.primary,
             ),
             const Expanded(child: Text("25 Nov")),
-            
-            Row(children: const [
-              Text("08:45"),
-            ],)
+            Row(
+              children: const [
+                Text("08:45"),
+              ],
+            )
           ],
         ),
       ),
@@ -40,6 +41,6 @@ class DurationItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 20,
-    )
+    );
   }
 }
