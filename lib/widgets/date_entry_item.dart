@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:timelogger_app/controllers/entries_controller.dart';
+import 'package:timelogger_app/utilities/sa_date_time.dart';
 
 class DateEntryItem extends StatelessWidget {
-  const DateEntryItem({Key? key}) : super(key: key);
+  final String date;
+  const DateEntryItem({required this.date, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
