@@ -54,20 +54,22 @@ class _HomePageState extends State<HomePage> {
                 child: Center(
                     child: Column(
                   children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'My Entries...',
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                    ),
-                    DateEntryItem(date: SADateTime.formatDate(TZDateTime.now(local))),
-                    DateEntryItem(date: SADateTime.formatDate(TZDateTime.now(local))),
-                    DateEntryItem(date: SADateTime.formatDate(TZDateTime.now(local))),
-                    DateEntryItem(date: SADateTime.formatDate(TZDateTime.now(local))),
-                    DateEntryItem(date: SADateTime.formatDate(TZDateTime.now(local))),
-                    DateEntryItem(date: SADateTime.formatDate(TZDateTime.now(local))),
-                    DateEntryItem(date: SADateTime.formatDate(TZDateTime.now(local))),
+                    GetBuilder<EntriesController>(builder: (entriesController) {
+                      return Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'My Entries...',
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                      );
+                    }),
+                    ...entriesController.dateEntries.map((dateEntry) {
+                      return DateEntryItem(
+                        date: SADateTime.formatDate(
+                          TZDateTime.now(local),
+                        ),
+                      );
+                    })
                   ],
                 )),
               )

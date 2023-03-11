@@ -17,6 +17,12 @@ class SADateTime {
     return roundToCurrentHour(currentTime);
   }
 
+  static TZDateTime firstDayOfTheWeek() {
+    var d = TZDateTime.now(local);
+    int weekDay = d.weekday;
+    return d.subtract(Duration(days: weekDay));
+  }
+
   static TZDateTime startOfDay(TZDateTime time) {
     return TZDateTime(time.location, time.year, time.month, time.day);
   }
