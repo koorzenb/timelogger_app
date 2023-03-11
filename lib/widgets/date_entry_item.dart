@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:timelogger_app/controllers/entries_controller.dart';
-import 'package:timelogger_app/utilities/sa_date_time.dart';
 
 class DateEntryItem extends StatelessWidget {
   final String date;
@@ -20,7 +19,9 @@ class DateEntryItem extends StatelessWidget {
                 Icons.chevron_right_rounded,
                 color: Theme.of(context).colorScheme.primary,
               ),
-              const Expanded(child: Text("25 Nov")),
+              Expanded(
+                child: Text(date),
+              ),
               Row(
                 children: const [
                   Text("08:45"),

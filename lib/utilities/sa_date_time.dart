@@ -19,7 +19,7 @@ class SADateTime {
 
   static TZDateTime firstDayOfTheWeek() {
     var d = TZDateTime.now(local);
-    int weekDay = d.weekday;
+    int weekDay = d.weekday - 1;
     return d.subtract(Duration(days: weekDay));
   }
 

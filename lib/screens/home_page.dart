@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:timelogger_app/controllers/entries_controller.dart';
 import 'package:timelogger_app/utilities/sa_date_time.dart';
-import 'package:timezone/timezone.dart';
 
 import '../widgets/date_entry_item.dart';
 
@@ -65,9 +64,7 @@ class _HomePageState extends State<HomePage> {
                     }),
                     ...entriesController.dateEntries.map((dateEntry) {
                       return DateEntryItem(
-                        date: SADateTime.formatDate(
-                          TZDateTime.now(local),
-                        ),
+                        date: SADateTime.formatDate(dateEntry.date),
                       );
                     })
                   ],
