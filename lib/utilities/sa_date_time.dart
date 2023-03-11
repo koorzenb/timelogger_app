@@ -26,11 +26,13 @@ class SADateTime {
   }
 
   /// string format: '2022-11-01 08:00'
-  static TZDateTime? tryParse(String formattedString) {
-    TZDateTime? dt;
+  static TZDateTime tryParse(String formattedString) {
+    TZDateTime dt;
     try {
       dt = TZDateTime.parse(local, '$formattedString+0200');
-    } catch (_) {}
+    } catch (_) {
+      dt = SADateTime.startOfDay(TZDateTime.now(local));
+    }
 
     return dt;
   }

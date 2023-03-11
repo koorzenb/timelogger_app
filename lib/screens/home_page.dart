@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:timelogger_app/widgets/date_entry_item.dart';
+import '../widgets/chart.dart';
+import '../widgets/date_entry_item.dart';
 
 class HomePage extends StatefulWidget {
   static String routename = '/home-page';

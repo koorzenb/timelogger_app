@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import 'package:timelogger_app/models/daily_entry.dart';
+
+import '../models/daily_entry.dart';
 
 class EntriesController extends GetxController {
   List<DateEntry> dateEntries = [];
