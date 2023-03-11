@@ -3,12 +3,13 @@ import 'package:timelogger_app/controllers/entries_controller.dart';
 
 class DateEntryItem extends StatelessWidget {
   final String date;
-  const DateEntryItem({required this.date, Key? key}) : super(key: key);
+  final Duration duration;
+  const DateEntryItem({required this.date, required this.duration, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: EntriesController.getOrPut.addDateEntry,
+      onTap: EntriesController.getOrPut.updateDateEntry,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 2.0),
         child: Card(
@@ -23,8 +24,9 @@ class DateEntryItem extends StatelessWidget {
                 child: Text(date),
               ),
               Row(
-                children: const [
-                  Text("08:45"),
+                children: [
+                  Text('${duration.inHours}'),
+                  const Text(':00'),
                 ],
               )
             ],

@@ -64,7 +64,10 @@ class _HomePageState extends State<HomePage> {
                     }),
                     ...entriesController.dateEntries.map((dateEntry) {
                       return DateEntryItem(
-                        date: SADateTime.formatDate(dateEntry.date),
+                        date: SADateTime.formatDate(
+                          dateEntry.date,
+                        ),
+                        duration: const Duration(hours: 8),
                       );
                     })
                   ],
