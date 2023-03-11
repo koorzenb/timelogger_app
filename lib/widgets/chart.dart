@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:timelogger_app/widgets/chart_bar.dart';
+import 'package:timelogger_app/widgets/entries_controller.dart';
 
 import '../models/daily_entry.dart';
 
@@ -8,7 +9,7 @@ import '../models/daily_entry.dart';
 class Chart extends StatelessWidget {
   final List<DateEntry> recentTimeSlots;
 
-  const Chart(this.recentTimeSlots);
+  const Chart({Key? key}) : super(key: key);
 
   List<Map<String, Object>> get groupedTransactionValues {
     return List.generate(

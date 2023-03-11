@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             const Expanded(
               child: Center(
-                child: Text("charts here"),
+                child: Chart(),
               ),
             ),
             const Divider(),
