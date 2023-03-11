@@ -2,7 +2,7 @@ import 'package:timezone/timezone.dart';
 
 class DateEntry {
   final TZDateTime date;
-  final Duration duration;
+  Duration duration = const Duration(hours: 0);
   int lunchTime = 0;
 
   DateEntry({

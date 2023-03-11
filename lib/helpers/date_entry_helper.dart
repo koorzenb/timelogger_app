@@ -19,6 +19,14 @@ class DateEntryHelper {
     }
   }
 
+  static initializeEntries(dateEntries) {
+    final firstDayOfTheWeek = SADateTime.firstDayOfTheWeek();
+
+    for (var i = 0; i < 7; i++) {
+      dateEntries.add(DateEntry(date: firstDayOfTheWeek.add(Duration(days: i)), duration: const Duration(hours: 0)));
+    }
+  }
+
   static int calculateHoursWorked(List<DateEntry> dateEntries) {
     Duration hoursWorked = const Duration(hours: 0);
 
@@ -26,5 +34,9 @@ class DateEntryHelper {
       hoursWorked += entry.duration;
     }
     return hoursWorked.inHours;
+  }
+
+  static void updateEntry(List<DateEntry> dateEntries, int idx, int duration) {
+    dateEntries[idx].duration = Duration(hours: duration);
   }
 }

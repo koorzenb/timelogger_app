@@ -63,11 +63,13 @@ class _HomePageState extends State<HomePage> {
                       );
                     }),
                     ...entriesController.dateEntries.map((dateEntry) {
+                      final idx = entriesController.dateEntries.indexOf(dateEntry);
                       return DateEntryItem(
                         date: SADateTime.formatDate(
                           dateEntry.date,
                         ),
                         duration: const Duration(hours: 8),
+                        idx: idx,
                       );
                     })
                   ],

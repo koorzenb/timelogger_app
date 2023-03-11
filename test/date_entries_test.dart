@@ -31,6 +31,19 @@ void main() {
       expect(expectEntries[1].date, dateEntries[1].date);
     });
 
+    test('update duration', () {
+      List<DateEntry> dateEntries = [];
+      DateEntryHelper.initializeEntries(dateEntries);
+      const entryIdx = 4;
+      const newDuration = 7;
+      DateEntryHelper.updateEntry(dateEntries, entryIdx, newDuration);
+      expect(dateEntries[entryIdx].duration, const Duration(hours: newDuration));
+
+      final hoursWorked = DateEntryHelper.calculateHoursWorked(dateEntries);
+      expect(hoursWorked, 7);
+      // calc hours
+    });
+
     test('calc week hours', () {
       List<DateEntry> dateEntries = [makeDateEntry('2022-11-01 08:00', 5), makeDateEntry('2022-11-03 08:00', 5)];
       final hoursWorked = DateEntryHelper.calculateHoursWorked(dateEntries);
