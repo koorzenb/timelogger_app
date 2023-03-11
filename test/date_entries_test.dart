@@ -9,8 +9,8 @@ void main() {
   });
 
   group('add entries', () {
-    test('basic df', () {
-      List<DateEntry> dateEntries = [makeDateEntry('2022-11-01 08:00', 5)];
+    test('basic add/insert', () {
+      List<DateEntry> dateEntries = [];
       DateEntryHelper.insertDateEntry(
         dateEntries,
         '2022-11-02 08:00',
@@ -29,6 +29,12 @@ void main() {
       );
       final expectEntries = [makeDateEntry('2022-11-01 08:00', 5), makeDateEntry('2022-11-02 08:00', 5), makeDateEntry('2022-11-03 08:00', 5)];
       expect(expectEntries[1].date, dateEntries[1].date);
+    });
+
+    test('calc week hours', () {
+      List<DateEntry> dateEntries = [makeDateEntry('2022-11-01 08:00', 5), makeDateEntry('2022-11-03 08:00', 5)];
+      final hoursWorked = DateEntryHelper.calculateHoursWorked(dateEntries);
+      expect(hoursWorked, 10);
     });
   });
 }

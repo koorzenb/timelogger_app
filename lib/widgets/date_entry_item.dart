@@ -1,35 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:timelogger_app/controllers/entries_controller.dart';
 
 class DateEntryItem extends StatelessWidget {
   const DateEntryItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 2.0),
-      child: Container(
-        height: 30.0,
-        decoration: BoxDecoration(
-          // color: Theme.of(context).colorScheme.primary,
-          border: Border.all(
-            color: Theme.of(context).colorScheme.primary,
+    return GestureDetector(
+      onTap: EntriesController.getOrPut.addDateEntry,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 2.0),
+        child: Card(
+          elevation: 2,
+          child: Row(
+            children: [
+              Icon(
+                Icons.chevron_right_rounded,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              const Expanded(child: Text("25 Nov")),
+              Row(
+                children: const [
+                  Text("08:45"),
+                ],
+              )
+            ],
           ),
-          borderRadius: BorderRadius.circular(2),
         ),
-        child: Row(
-          children: [
-            Icon(
-              Icons.chevron_right_rounded,
-              color: Theme.of(context).colorScheme.primary,
-            ),
-            const Expanded(child: Text("25 Nov")),
-            Row(
-              children: const [
-                Text("08:45"),
-              ],
-            )
-          ],
-        ),
+        // ),
       ),
     );
   }

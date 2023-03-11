@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import '../widgets/chart.dart';
+import 'package:get/get.dart';
+import 'package:timelogger_app/controllers/entries_controller.dart';
+
 import '../widgets/date_entry_item.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,6 +15,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    EntriesController.getOrPut;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -29,32 +32,41 @@ class _HomePageState extends State<HomePage> {
       body: Center(
           child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            const Expanded(
-              child: Center(
-                child: Chart(),
-              ),
-            ),
-            const Divider(),
-            Expanded(
-              child: Center(
-                  child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'My Entries...',
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                  ),
-                  const DateEntryItem(),
-                  const DateEntryItem(),
+        child: GetBuilder<EntriesController>(builder: (entriesController) {
+          return Column(
+            children: [
+              Row(
+                children: const [
+                  Text('Previous week carry-over: '),
+                  Text("5h40min"),
                 ],
-              )),
-            )
-          ],
-        ),
+              ),
+              Row(
+                children: [
+                  const Text('Hours worked this week: '),
+                  Text('${entriesController.hoursWorked}'),
+                ],
+              ),
+              const Divider(),
+              Expanded(
+                child: Center(
+                    child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'My Entries...',
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ),
+                    const DateEntryItem(),
+                    const DateEntryItem(),
+                  ],
+                )),
+              )
+            ],
+          );
+        }),
       )),
     );
   }
