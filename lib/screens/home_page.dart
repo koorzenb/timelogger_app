@@ -48,6 +48,12 @@ class _HomePageState extends State<HomePage> {
                   Text('${entriesController.hoursWorked}'),
                 ],
               ),
+              Row(
+                children: [
+                  const Text('Next week carry-over: '),
+                  Text('${40 - entriesController.hoursWorked}'),
+                ],
+              ),
               const Divider(),
               Expanded(
                 child: Center(
