@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timelogger_app/controllers/entries_controller.dart';
 import 'package:timelogger_app/utilities/sa_date_time.dart';
 import 'package:timezone/timezone.dart';
 
@@ -15,18 +16,18 @@ class DateEntryItem extends StatefulWidget {
 
 class _DateEntryItemState extends State<DateEntryItem> {
   bool hasStartingTime = false;
-  TimeOfDay _startingTime = const TimeOfDay(hour: 08, minute: 00);
+  TimeOfDay _startTime = const TimeOfDay(hour: 08, minute: 00);
   TimeOfDay _endTime = const TimeOfDay(hour: 16, minute: 00);
 
   void _selectTime() async {
     final TimeOfDay? newTime = await showTimePicker(
       context: context,
-      initialTime: hasStartingTime ? _endTime : _startingTime,
+      initialTime: hasStartingTime ? _endTime : _startTime,
     );
     if (newTime != null) {
       if (!hasStartingTime) {
         setState(() {
-          _startingTime = newTime;
+          _startTime = newTime;
         });
         hasStartingTime = true;
       } else {
@@ -34,8 +35,13 @@ class _DateEntryItemState extends State<DateEntryItem> {
           _endTime = newTime;
         });
         hasStartingTime = false;
+        EntriesController.getOrPut.updateDateEntry(widget.idx, _startTime, _endTime);
       }
     }
+  }
+
+  int _getDurationMinutes(Duration duration) {
+    return duration.inMinutes % 60;
   }
 
   @override
@@ -58,7 +64,7 @@ class _DateEntryItemState extends State<DateEntryItem> {
                     child: Text(SADateTime.getWeekday(widget.date)),
                   ),
                   Text('${widget.duration.inHours}'),
-                  const Text(':00'),
+                  Text(':${_getDurationMinutes(widget.duration)}'),
                 ],
               ),
               Row(
@@ -69,7 +75,7 @@ class _DateEntryItemState extends State<DateEntryItem> {
                     style: const TextStyle(color: Colors.grey),
                   ),
                   Text(
-                    "${_startingTime.hour}:${_startingTime.minute} -${_endTime.hour}:${_endTime.minute}",
+                    "${_startTime.hour}:${_startTime.minute} - ${_endTime.hour}:${_endTime.minute}",
                     style: const TextStyle(color: Colors.grey),
                   ),
                 ],

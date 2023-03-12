@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                       final idx = entriesController.dateEntries.indexOf(dateEntry);
                       return DateEntryItem(
                         date: dateEntry.date,
-                        duration: const Duration(hours: 8),
+                        duration: dateEntry.duration,
                         idx: idx,
                       );
                     })

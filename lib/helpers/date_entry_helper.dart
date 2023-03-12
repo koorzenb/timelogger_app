@@ -36,7 +36,7 @@ class DateEntryHelper {
     return hoursWorked.inHours;
   }
 
-  static void updateEntry(List<DateEntry> dateEntries, int idx, int duration) {
-    dateEntries[idx].duration = Duration(hours: duration);
+  static void updateEntry(List<DateEntry> dateEntries, int idx, Duration duration) {
+    dateEntries[idx].duration = duration;
   }
 }

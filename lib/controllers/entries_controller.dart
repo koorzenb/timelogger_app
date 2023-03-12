@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:timelogger_app/helpers/date_entry_helper.dart';
 
@@ -24,8 +25,9 @@ class EntriesController extends GetxController {
     return EntriesController._();
   }
 
-  updateDateEntry(int idx) {
-    DateEntryHelper.updateEntry(dateEntries, idx, 8);
+  updateDateEntry(int idx, TimeOfDay startTime, TimeOfDay endTime) {
+    final duration = Duration(hours: endTime.hour - startTime.hour, minutes: endTime.minute - startTime.minute);
+    DateEntryHelper.updateEntry(dateEntries, idx, duration);
     hoursWorked = DateEntryHelper.calculateHoursWorked(dateEntries);
     update();
   }
