@@ -64,7 +64,7 @@ class SADateTime {
   }
 
   static String formatDate(TZDateTime dateTime) {
-    DateFormat formatter = DateFormat('EEEE, d MMMM');
+    DateFormat formatter = DateFormat('d MMMM');
     return formatter.format(dateTime);
   }
 

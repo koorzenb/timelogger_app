@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:timelogger_app/controllers/entries_controller.dart';
+import 'package:timelogger_app/utilities/sa_date_time.dart';
+import 'package:timezone/timezone.dart';
 
 class DateEntryItem extends StatelessWidget {
-  final String date;
+  final TZDateTime date;
   final Duration duration;
   final int idx;
   const DateEntryItem({required this.date, required this.duration, required this.idx, Key? key}) : super(key: key);
@@ -15,19 +17,32 @@ class DateEntryItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 2.0),
         child: Card(
           elevation: 2,
-          child: Row(
+          child: Column(
             children: [
-              Icon(
-                Icons.chevron_right_rounded,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              Expanded(
-                child: Text(date),
-              ),
               Row(
                 children: [
+                  Icon(
+                    Icons.chevron_right_rounded,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                  Expanded(
+                    child: Text(SADateTime.getWeekday(date)),
+                  ),
                   Text('${duration.inHours}'),
                   const Text(':00'),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    SADateTime.formatDate(date),
+                    style: const TextStyle(color: Colors.grey),
+                  ),
+                  const Text(
+                    "07:45-17:45",
+                    style: TextStyle(color: Colors.grey),
+                  ),
                 ],
               )
             ],

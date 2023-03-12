@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:timelogger_app/controllers/entries_controller.dart';
-import 'package:timelogger_app/utilities/sa_date_time.dart';
 
 import '../widgets/date_entry_item.dart';
 
@@ -71,9 +70,7 @@ class _HomePageState extends State<HomePage> {
                     ...entriesController.dateEntries.map((dateEntry) {
                       final idx = entriesController.dateEntries.indexOf(dateEntry);
                       return DateEntryItem(
-                        date: SADateTime.formatDate(
-                          dateEntry.date,
-                        ),
+                        date: dateEntry.date,
                         duration: const Duration(hours: 8),
                         idx: idx,
                       );
