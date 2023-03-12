@@ -35,9 +35,9 @@ void main() {
       List<DateEntry> dateEntries = [];
       DateEntryHelper.initializeEntries(dateEntries);
       const entryIdx = 4;
-      const newDuration = 7;
+      const newDuration = Duration(hours: 7);
       DateEntryHelper.updateEntry(dateEntries, entryIdx, newDuration);
-      expect(dateEntries[entryIdx].duration, const Duration(hours: newDuration));
+      expect(dateEntries[entryIdx].duration, newDuration);
 
       final hoursWorked = DateEntryHelper.calculateHoursWorked(dateEntries);
       expect(hoursWorked, 7);

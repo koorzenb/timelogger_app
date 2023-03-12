@@ -27,13 +27,13 @@ class DateEntryHelper {
     }
   }
 
-  static int calculateHoursWorked(List<DateEntry> dateEntries) {
+  static Duration calculateHoursWorked(List<DateEntry> dateEntries) {
     Duration hoursWorked = const Duration(hours: 0);
 
     for (var entry in dateEntries) {
       hoursWorked += entry.duration;
     }
-    return hoursWorked.inHours;
+    return hoursWorked;
   }
 
   static void updateEntry(List<DateEntry> dateEntries, int idx, Duration duration) {

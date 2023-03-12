@@ -6,7 +6,9 @@ import '../models/daily_entry.dart';
 
 class EntriesController extends GetxController {
   List<DateEntry> dateEntries = [];
-  int hoursWorked = 0;
+  Duration hoursWorked = const Duration(hours: 0);
+  Duration previousWeekCarryOver = const Duration(hours: 0);
+  Duration nextWeekCarryOver = const Duration(hours: 0);
 
   static EntriesController get getOrPut {
     try {

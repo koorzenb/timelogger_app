@@ -13,6 +13,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Color getTextColor(int hoursWorked) {
+    if (40 - hoursWorked < 0) {
+      return Colors.green;
+    } else {
+      return Colors.red;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     EntriesController.getOrPut;
@@ -38,19 +46,22 @@ class _HomePageState extends State<HomePage> {
               Row(
                 children: const [
                   Text('Previous week carry-over: '),
-                  Text("5h40min"),
+                  Text("0h00min"),
                 ],
               ),
               Row(
                 children: [
                   const Text('Hours worked this week: '),
-                  Text('${entriesController.hoursWorked}'),
+                  Text('${entriesController.hoursWorked.inHours}'),
                 ],
               ),
               Row(
                 children: [
                   const Text('Next week carry-over: '),
-                  Text('${40 - entriesController.hoursWorked}'),
+                  Text(
+                    '${entriesController.hoursWorked.inHours - 40}',
+                    style: TextStyle(color: getTextColor(entriesController.hoursWorked.inHours)),
+                  ),
                 ],
               ),
               const Divider(),

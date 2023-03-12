@@ -18,6 +18,7 @@ class _DateEntryItemState extends State<DateEntryItem> {
   bool hasStartingTime = false;
   TimeOfDay _startTime = const TimeOfDay(hour: 08, minute: 00);
   TimeOfDay _endTime = const TimeOfDay(hour: 16, minute: 00);
+  bool isSet = false;
 
   void _selectTime() async {
     final TimeOfDay? newTime = await showTimePicker(
@@ -35,6 +36,7 @@ class _DateEntryItemState extends State<DateEntryItem> {
           _endTime = newTime;
         });
         hasStartingTime = false;
+        isSet = true;
         EntriesController.getOrPut.updateDateEntry(widget.idx, _startTime, _endTime);
       }
     }
@@ -47,10 +49,11 @@ class _DateEntryItemState extends State<DateEntryItem> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: _selectTime,
+      onTap: isSet ? null : _selectTime,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 2.0),
         child: Card(
+          color: !isSet ? Colors.white : Colors.grey.shade300,
           elevation: 2,
           child: Column(
             children: [
