@@ -1,18 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:timelogger_app/controllers/entries_controller.dart';
 import 'package:timelogger_app/utilities/sa_date_time.dart';
 import 'package:timezone/timezone.dart';
 
-class DateEntryItem extends StatelessWidget {
+class DateEntryItem extends StatefulWidget {
   final TZDateTime date;
   final Duration duration;
   final int idx;
+
   const DateEntryItem({required this.date, required this.duration, required this.idx, Key? key}) : super(key: key);
+
+  @override
+  State<DateEntryItem> createState() => _DateEntryItemState();
+}
+
+class _DateEntryItemState extends State<DateEntryItem> {
+  bool hasStartingTime = false;
+  TimeOfDay _startingTime = const TimeOfDay(hour: 08, minute: 00);
+  TimeOfDay _endTime = const TimeOfDay(hour: 16, minute: 00);
+
+  void _selectTime() async {
+    final TimeOfDay? newTime = await showTimePicker(
+      context: context,
+      initialTime: hasStartingTime ? _endTime : _startingTime,
+    );
+    if (newTime != null) {
+      if (!hasStartingTime) {
+        setState(() {
+          _startingTime = newTime;
+        });
+        hasStartingTime = true;
+      } else {
+        setState(() {
+          _endTime = newTime;
+        });
+        hasStartingTime = false;
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => EntriesController.getOrPut.updateDateEntry(idx),
+      onTap: _selectTime,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 2.0),
         child: Card(
@@ -26,9 +55,9 @@ class DateEntryItem extends StatelessWidget {
                     color: Theme.of(context).colorScheme.primary,
                   ),
                   Expanded(
-                    child: Text(SADateTime.getWeekday(date)),
+                    child: Text(SADateTime.getWeekday(widget.date)),
                   ),
-                  Text('${duration.inHours}'),
+                  Text('${widget.duration.inHours}'),
                   const Text(':00'),
                 ],
               ),
@@ -36,12 +65,12 @@ class DateEntryItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    SADateTime.formatDate(date),
+                    SADateTime.formatDate(widget.date),
                     style: const TextStyle(color: Colors.grey),
                   ),
-                  const Text(
-                    "07:45-17:45",
-                    style: TextStyle(color: Colors.grey),
+                  Text(
+                    "${_startingTime.hour}:${_startingTime.minute} -${_endTime.hour}:${_endTime.minute}",
+                    style: const TextStyle(color: Colors.grey),
                   ),
                 ],
               )
